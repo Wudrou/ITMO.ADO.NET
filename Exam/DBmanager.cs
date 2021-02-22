@@ -15,20 +15,64 @@ namespace Exam
         public DBmanager()
         {
             InitializeComponent();
+
+            Clear();
         }
 
         private void show_Click(object sender, EventArgs e)
         {
             using (MyDBEntities ctx = new MyDBEntities())
             {
-                foreach (Customers cust in ctx.Customers)
-                    listBox1.Items.Add(cust.PersonID + "  |  " + cust.FirstName + "  |  " + cust.LastName);
+                Clear();
+                if (radioButtonCustomer.Checked == true)
+                {
+                    listView1.Columns[0].Width = 100;
+                    listView1.Columns[1].Width = 100;
+                    listView1.Columns[2].Width = 100;
+                    foreach (Customers cust in ctx.Customers)
+                    {
+                        ListViewItem lvi = new ListViewItem(Convert.ToString(cust.PersonID));
+                        lvi.SubItems.Add(cust.FirstName);
+                        lvi.SubItems.Add(cust.LastName);
+                        listView1.Items.Add(lvi);
+                    }
+                            
+                }
+                else
+                {
+                    if (radioButtonOrder.Checked == true)
+                    {
+                        listView1.Columns[0].Width = 100;
+                        listView1.Columns[3].Width = 100;
+                        foreach (Orders ord in ctx.Orders)
+                        {
+                            ListViewItem lvi = new ListViewItem(Convert.ToString(ord.CustomerID));
+                            lvi.SubItems.Add("");
+                            lvi.SubItems.Add("");
+                            lvi.SubItems.Add(Convert.ToString(ord.OrderID));
+                            listView1.Items.Add(lvi);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Необходимо выбрать источник данных");
+                    }
+                }
             }
+        }
+        private void Clear()
+        {
+            listView1.Columns[0].Width = 0;
+            listView1.Columns[1].Width = 0;
+            listView1.Columns[2].Width = 0;
+            listView1.Columns[3].Width = 0;
+            listBox1.Items.Clear();
+            listView1.Items.Clear();
         }
 
         private void clear_Click(object sender, EventArgs e)
         {
-            listBox1.Items.Clear();
+            Clear();
         }
     }
 }
