@@ -39,7 +39,6 @@ namespace Exam
             this.add = new System.Windows.Forms.Button();
             this.change = new System.Windows.Forms.Button();
             this.delete = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.textBox_IDorder = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.clear = new System.Windows.Forms.Button();
@@ -141,14 +140,6 @@ namespace Exam
             this.delete.Text = "Удалить";
             this.delete.UseVisualStyleBackColor = true;
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(545, 108);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(166, 199);
-            this.listBox1.TabIndex = 10;
-            // 
             // textBox_IDorder
             // 
             this.textBox_IDorder.Location = new System.Drawing.Point(100, 100);
@@ -181,7 +172,7 @@ namespace Exam
             this.groupBox1.Controls.Add(this.radioButtonCustomer);
             this.groupBox1.Location = new System.Drawing.Point(287, 10);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(250, 38);
+            this.groupBox1.Size = new System.Drawing.Size(146, 38);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Выбор данных";
@@ -189,7 +180,7 @@ namespace Exam
             // radioButtonCustomer
             // 
             this.radioButtonCustomer.AutoSize = true;
-            this.radioButtonCustomer.Location = new System.Drawing.Point(24, 15);
+            this.radioButtonCustomer.Location = new System.Drawing.Point(6, 15);
             this.radioButtonCustomer.Name = "radioButtonCustomer";
             this.radioButtonCustomer.Size = new System.Drawing.Size(69, 17);
             this.radioButtonCustomer.TabIndex = 0;
@@ -200,7 +191,7 @@ namespace Exam
             // radioButtonOrder
             // 
             this.radioButtonOrder.AutoSize = true;
-            this.radioButtonOrder.Location = new System.Drawing.Point(109, 15);
+            this.radioButtonOrder.Location = new System.Drawing.Point(81, 15);
             this.radioButtonOrder.Name = "radioButtonOrder";
             this.radioButtonOrder.Size = new System.Drawing.Size(64, 17);
             this.radioButtonOrder.TabIndex = 1;
@@ -258,7 +249,6 @@ namespace Exam
             this.Controls.Add(this.clear);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox_IDorder);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.delete);
             this.Controls.Add(this.change);
             this.Controls.Add(this.add);
@@ -294,7 +284,6 @@ namespace Exam
         private System.Windows.Forms.Button add;
         private System.Windows.Forms.Button change;
         private System.Windows.Forms.Button delete;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.TextBox textBox_IDorder;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button clear;
