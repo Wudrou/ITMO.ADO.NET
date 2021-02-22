@@ -25,6 +25,11 @@ namespace Exam
                     listBox1.Items.Add(cust.PersonID + "  |  " + cust.FirstName + "  |  " + cust.LastName);
             }
         }
+
+        private void clear_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+        }
     }
 }
 
