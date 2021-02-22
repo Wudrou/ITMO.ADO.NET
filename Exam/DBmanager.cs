@@ -15,7 +15,6 @@ namespace Exam
         public DBmanager()
         {
             InitializeComponent();
-
             Clear();
         }
 
@@ -36,7 +35,6 @@ namespace Exam
                         lvi.SubItems.Add(cust.LastName);
                         listView1.Items.Add(lvi);
                     }
-                            
                 }
                 else
                 {
