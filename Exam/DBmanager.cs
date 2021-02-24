@@ -64,7 +64,6 @@ namespace Exam
             listView1.Columns[1].Width = 0;
             listView1.Columns[2].Width = 0;
             listView1.Columns[3].Width = 0;
-            listBox1.Items.Clear();
             listView1.Items.Clear();
         }
 
