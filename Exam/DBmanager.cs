@@ -71,6 +71,83 @@ namespace Exam
         {
             Clear();
         }
+
+        private void add_Click(object sender, EventArgs e)
+        {
+            if (radioButtonCustomer.Checked == true)
+            {
+                if (textBox_ID.Text == "" || textBox_FirstName.Text == "" || textBox_LastName.Text == "")
+                {
+                    MessageBox.Show("Необходимо ввести ID, имя и фамилию клиента");
+                }
+                else
+                {
+                    try
+                    {
+                        using (MyDBEntities ctx = new MyDBEntities())
+                        {
+                             var customer = new Customers()
+                                { PersonID = Convert.ToInt32(textBox_ID.Text), FirstName = textBox_FirstName.Text, LastName = textBox_LastName.Text };
+                             ctx.Customers.Add(customer);
+                             ctx.SaveChanges();
+                        }
+                        MessageBox.Show("Клиент добавлен.");
+                        textBox_ID.Clear();
+                        textBox_FirstName.Clear();
+                        textBox_LastName.Clear();
+                        textBox_Order.Clear();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Клиент с таким ID уже существует");
+                    }
+                }
+            }
+            else
+            {
+                if (radioButtonOrder.Checked == true)
+                {
+                    if (textBox_Order.Text == "" || textBox_ID.Text == "")
+                    {
+                        MessageBox.Show("Необходимо ввести ID клиента и номер заказа");
+                    }
+                    else
+                    {
+                        try
+                        {
+                            using (MyDBEntities ctx = new MyDBEntities())
+                            {
+                                var order = new Orders()
+                                    { OrderID = Convert.ToInt32(textBox_Order.Text), CustomerID = Convert.ToInt32(textBox_ID.Text) };
+                                ctx.Orders.Add(order);
+                                ctx.SaveChanges();
+                            }
+                            MessageBox.Show("Заказ добавлен.");
+                            textBox_ID.Clear();
+                            textBox_FirstName.Clear();
+                            textBox_LastName.Clear();
+                            textBox_Order.Clear();
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Номер заказа уже существует, либо отсутствует клиент с указанным ID");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Необходимо выбрать таблицу для добавления данных");
+                }
+            }
+        }
+
+        private void change_Click(object sender, EventArgs e)
+        {
+            using (MyDBEntities ctx = new MyDBEntities())
+            {
+                ctx.SaveChanges();
+            }
+        }
     }
 }
 

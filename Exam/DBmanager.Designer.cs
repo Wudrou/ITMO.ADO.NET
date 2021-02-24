@@ -39,18 +39,18 @@ namespace Exam
             this.add = new System.Windows.Forms.Button();
             this.change = new System.Windows.Forms.Button();
             this.delete = new System.Windows.Forms.Button();
-            this.textBox_IDorder = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.clear = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButtonCustomer = new System.Windows.Forms.RadioButton();
             this.radioButtonOrder = new System.Windows.Forms.RadioButton();
+            this.radioButtonCustomer = new System.Windows.Forms.RadioButton();
             this.myDBDataSet = new Exam.MyDBDataSet();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView1 = new System.Windows.Forms.ListView();
+            this.textBox_Order = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myDBDataSet)).BeginInit();
             this.SuspendLayout();
@@ -105,7 +105,7 @@ namespace Exam
             // 
             // show
             // 
-            this.show.Location = new System.Drawing.Point(287, 57);
+            this.show.Location = new System.Drawing.Point(287, 89);
             this.show.Name = "show";
             this.show.Size = new System.Drawing.Size(80, 45);
             this.show.TabIndex = 6;
@@ -115,50 +115,36 @@ namespace Exam
             // 
             // add
             // 
-            this.add.Location = new System.Drawing.Point(373, 57);
+            this.add.Location = new System.Drawing.Point(373, 89);
             this.add.Name = "add";
             this.add.Size = new System.Drawing.Size(80, 45);
             this.add.TabIndex = 7;
             this.add.Text = "Добавить данные";
             this.add.UseVisualStyleBackColor = true;
+            this.add.Click += new System.EventHandler(this.add_Click);
             // 
             // change
             // 
-            this.change.Location = new System.Drawing.Point(459, 57);
+            this.change.Location = new System.Drawing.Point(373, 140);
             this.change.Name = "change";
             this.change.Size = new System.Drawing.Size(80, 45);
             this.change.TabIndex = 8;
-            this.change.Text = "Редактировать";
+            this.change.Text = "Синхронизировать БД";
             this.change.UseVisualStyleBackColor = true;
+            this.change.Click += new System.EventHandler(this.change_Click);
             // 
             // delete
             // 
-            this.delete.Location = new System.Drawing.Point(545, 57);
+            this.delete.Location = new System.Drawing.Point(373, 191);
             this.delete.Name = "delete";
             this.delete.Size = new System.Drawing.Size(80, 45);
             this.delete.TabIndex = 9;
             this.delete.Text = "Удалить";
             this.delete.UseVisualStyleBackColor = true;
             // 
-            // textBox_IDorder
-            // 
-            this.textBox_IDorder.Location = new System.Drawing.Point(100, 100);
-            this.textBox_IDorder.Name = "textBox_IDorder";
-            this.textBox_IDorder.Size = new System.Drawing.Size(167, 20);
-            this.textBox_IDorder.TabIndex = 11;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 103);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(80, 13);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Номер заказа";
-            // 
             // clear
             // 
-            this.clear.Location = new System.Drawing.Point(631, 57);
+            this.clear.Location = new System.Drawing.Point(373, 276);
             this.clear.Name = "clear";
             this.clear.Size = new System.Drawing.Size(80, 45);
             this.clear.TabIndex = 13;
@@ -170,23 +156,12 @@ namespace Exam
             // 
             this.groupBox1.Controls.Add(this.radioButtonOrder);
             this.groupBox1.Controls.Add(this.radioButtonCustomer);
-            this.groupBox1.Location = new System.Drawing.Point(287, 10);
+            this.groupBox1.Location = new System.Drawing.Point(287, 40);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(146, 38);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Выбор данных";
-            // 
-            // radioButtonCustomer
-            // 
-            this.radioButtonCustomer.AutoSize = true;
-            this.radioButtonCustomer.Location = new System.Drawing.Point(6, 15);
-            this.radioButtonCustomer.Name = "radioButtonCustomer";
-            this.radioButtonCustomer.Size = new System.Drawing.Size(69, 17);
-            this.radioButtonCustomer.TabIndex = 0;
-            this.radioButtonCustomer.TabStop = true;
-            this.radioButtonCustomer.Text = "Клиенты";
-            this.radioButtonCustomer.UseVisualStyleBackColor = true;
             // 
             // radioButtonOrder
             // 
@@ -198,6 +173,17 @@ namespace Exam
             this.radioButtonOrder.TabStop = true;
             this.radioButtonOrder.Text = "Заказы";
             this.radioButtonOrder.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonCustomer
+            // 
+            this.radioButtonCustomer.AutoSize = true;
+            this.radioButtonCustomer.Location = new System.Drawing.Point(6, 15);
+            this.radioButtonCustomer.Name = "radioButtonCustomer";
+            this.radioButtonCustomer.Size = new System.Drawing.Size(69, 17);
+            this.radioButtonCustomer.TabIndex = 0;
+            this.radioButtonCustomer.TabStop = true;
+            this.radioButtonCustomer.Text = "Клиенты";
+            this.radioButtonCustomer.UseVisualStyleBackColor = true;
             // 
             // myDBDataSet
             // 
@@ -232,23 +218,39 @@ namespace Exam
             this.columnHeader3,
             this.columnHeader4});
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(17, 126);
+            this.listView1.Location = new System.Drawing.Point(17, 140);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(350, 181);
             this.listView1.TabIndex = 15;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
+            // textBox_Order
+            // 
+            this.textBox_Order.Location = new System.Drawing.Point(100, 100);
+            this.textBox_Order.Name = "textBox_Order";
+            this.textBox_Order.Size = new System.Drawing.Size(167, 20);
+            this.textBox_Order.TabIndex = 16;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(14, 103);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(80, 13);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Номер заказа";
+            // 
             // DBmanager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(717, 321);
+            this.ClientSize = new System.Drawing.Size(465, 333);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.textBox_Order);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.clear);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox_IDorder);
             this.Controls.Add(this.delete);
             this.Controls.Add(this.change);
             this.Controls.Add(this.add);
@@ -284,8 +286,6 @@ namespace Exam
         private System.Windows.Forms.Button add;
         private System.Windows.Forms.Button change;
         private System.Windows.Forms.Button delete;
-        private System.Windows.Forms.TextBox textBox_IDorder;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button clear;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radioButtonOrder;
@@ -296,6 +296,8 @@ namespace Exam
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.TextBox textBox_Order;
+        private System.Windows.Forms.Label label4;
     }
 }
 
