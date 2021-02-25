@@ -143,9 +143,73 @@ namespace Exam
 
         private void change_Click(object sender, EventArgs e)
         {
-            using (MyDBEntities ctx = new MyDBEntities())
+            //при добавлении и удалении используется SaveChanges()
+            MessageBox.Show("Изменения синхронизированы с БД");
+        }
+
+        private void delete_Click(object sender, EventArgs e)
+        {
+            if(radioButtonCustomer.Checked == true)
             {
-                ctx.SaveChanges();
+                if (textBox_ID.Text == "")
+                {
+                    MessageBox.Show("Необходимо ввести ID удаляемого клиента");
+                }
+                else
+                {
+                    try
+                    {
+                        using (MyDBEntities ctx = new MyDBEntities())
+                        {
+                            int id = Convert.ToInt32(textBox_ID.Text);
+                            var query = from cust in ctx.Customers
+                                        where cust.PersonID == id
+                                        select cust;
+                            foreach (var deleteId in query)
+                            {
+                                ctx.Customers.Remove(deleteId);
+                            }
+                            ctx.SaveChanges();
+                        }
+                        MessageBox.Show("Клиент удален.");
+                        textBox_ID.Clear();
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Нельзя удалить клиента, т.к. у него есть заказы");
+                    }
+                }
+            }
+            else
+            {
+                if(radioButtonOrder.Checked == true)
+                {
+                    if (textBox_Order.Text == "")
+                    {
+                        MessageBox.Show("Необходимо ввести номер удаляемого заказа");
+                    }
+                    else
+                    {
+                        using (MyDBEntities ctx = new MyDBEntities())
+                        {
+                            int id = Convert.ToInt32(textBox_Order.Text);
+                            var query = from ord in ctx.Orders
+                                        where ord.OrderID == id
+                                        select ord;
+                            foreach (var deleteOrd in query)
+                            {
+                                ctx.Orders.Remove(deleteOrd);
+                            }
+                            ctx.SaveChanges();
+                        }
+                        MessageBox.Show("Заказ удален.");
+                        textBox_Order.Clear();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Необходимо выбрать таблицу для удаления данных");
+                }
             }
         }
     }

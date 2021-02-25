@@ -141,6 +141,7 @@ namespace Exam
             this.delete.TabIndex = 9;
             this.delete.Text = "Удалить";
             this.delete.UseVisualStyleBackColor = true;
+            this.delete.Click += new System.EventHandler(this.delete_Click);
             // 
             // clear
             // 
@@ -245,7 +246,7 @@ namespace Exam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(465, 333);
+            this.ClientSize = new System.Drawing.Size(469, 333);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox_Order);
             this.Controls.Add(this.listView1);
